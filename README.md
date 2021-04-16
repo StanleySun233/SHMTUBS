@@ -1,18 +1,13 @@
 # Robot For Book Sorting
+
 语言：中文
 
-
-Language:English (Translated By Robot)
-
-
-
-
 这个项目的代码起始于2021年度大学生创新创业训练计划项目。
-
 
 理论实现：
 
 主体：
+
 1、将书本堆放在机器人上，重力感应器激活，进入工作状态。
 
 2、摄像头识别最上面的一本书。
@@ -47,6 +42,4 @@ Language:English (Translated By Robot)
 
 涉及编程语言：C、Python
 
-
 涉及软件：Arduino、Visual Studio Community
-
