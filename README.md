@@ -57,7 +57,6 @@ https://github.com/uchidalab/book-dataset
 ```
 
 3. 机器学习来源于文章 `An evidential classifier based on Dempster-Shafer theory and deep learning` 的思路。
-4.
 
 *目前暂未使用到 `Dempster-Shafer` ，准确率在83%*
 
