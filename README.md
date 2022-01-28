@@ -44,19 +44,22 @@
 
 ## 参考
 
-1. 循迹小车发布于 `BiliBili`
+1. 循迹小车发布于 `BiliBili` 。
 
 ```
 https://www.bilibili.com/video/BV1hm4y1Q77d/
 ```
 
-2. 书本封面来自于开源数据集 `Book-30`
+2. 书本封面来自于开源数据集 `Book-30` 。
 
 ```
 https://github.com/uchidalab/book-dataset
 ```
 
-3. 机器学习来源于文章 `An evidential classifier based on Dempster-Shafer theory and deep learning` 的思路
+3. 机器学习来源于文章 `An evidential classifier based on Dempster-Shafer theory and deep learning` 的思路。
+4.
+
+*目前暂未使用到 `Dempster-Shafer` ，准确率在83%*
 
 ```
 https://github.com/tongzheng1992/E-CNN-classifier
