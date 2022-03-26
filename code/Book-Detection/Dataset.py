@@ -1,3 +1,3 @@
 import function as sf
 
-sf.DatasetCreate(64)
+sf.DatasetCreate(32)

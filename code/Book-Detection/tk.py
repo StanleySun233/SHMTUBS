@@ -6,11 +6,11 @@ import numpy as np
 import tensorflow.keras as keras
 from PIL import Image, ImageTk
 
-import function as pp
+import function as sf
 
 global pic
 
-model = keras.models.load_model('E:\\py\\book\\model64-1.h5')
+model = keras.models.load_model('./model32.h5')
 
 
 def pic2TKpic(img, img_size):
@@ -26,12 +26,12 @@ def predictTask(*args):
     global pic
     res = askopenfilename()
     Label2.config(text=res)
-    pic = pic2TKpic(res, img_size=(128, 128))
+    pic = pic2TKpic(res, img_size=(200, 200))
     Label3.configure(image=pic)
 
-    f = pp.img2Numpy(res, size=128)
-    a = model.predict(np.array([f, f]))
-    a = np.argmax(a[0])
+    f = sf.ImgToNumpy(res, size=32)
+    a = model.predict(np.array([f]))
+    a = np.argmax(a, axis=1)[0]
     print(a)
     Label5.config(text=str(a))
 

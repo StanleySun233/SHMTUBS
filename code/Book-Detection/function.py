@@ -4,6 +4,7 @@ import random as rd
 
 import cv2
 import numpy as np
+import tensorflow as tf
 
 
 def RotateBound(image, angle):
@@ -42,12 +43,13 @@ def DatasetCreate(size, rate=0.7):
                 cv2.imwrite('./data/sheet/test/{}-{}.jpg'.format(i, j), ret)
             else:
                 cv2.imwrite("./data/sheet/{}/{}-{}.jpg".format(i, i, j), ret)
+        print("pic {} finished".format(i))
 
 
 def ImgToNumpy(image, theory=cv2.COLOR_BGR2RGB, size=None):
     image = cv2.imread(image)
     if size:
-        image = cv2.resize(image, size)
+        image = cv2.resize(image, (size, size))
     image = cv2.cvtColor(image, theory)
     return image
 
@@ -62,11 +64,11 @@ def TrainSetLoad():
             pic = ImgToNumpy('./data/sheet/{}/{}'.format(i, j))
             lab = i
             x_train.append(pic)
-            x_test.append(lab)
+            y_train.append(lab)
     for i in os.listdir('./data/sheet/test/'):
         pic = ImgToNumpy('./data/sheet/test/{}'.format(i))
         lab = int(i[0:i.index("-")])
-        y_train.append(pic)
+        x_test.append(pic)
         y_test.append(lab)
 
     x_train = np.array(x_train)
@@ -81,9 +83,10 @@ def RandomTest(TestCases, x_test, y_test, model):
     right = 0
     wrong = 0
     for i in range(TestCases):
-        l = rd.randint(0, 310)
-        print(x_test[l])
-        a = model.predict([x_test[l]])
+        l = rd.randint(1, len(x_test) - 1)
+        a = model.predict(np.array([x_test[l]]))
+        a = tf.argmax(a, axis=1)
+        print(int(a), y_test[l])
         if int(a) == y_test[l]:
             right += 1
         else:
