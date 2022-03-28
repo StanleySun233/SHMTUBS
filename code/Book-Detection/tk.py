@@ -10,7 +10,7 @@ import function as sf
 
 global pic
 
-model = keras.models.load_model('./model32.h5')
+model = keras.models.load_model('./model128.h5')
 
 
 def pic2TKpic(img, img_size):

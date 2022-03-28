@@ -16,8 +16,8 @@ for i in data[1].replace("\n", "").split(" "):
 for i in data[2].replace("\n", "").split(" "):
     val_acc.append(float(i))
 
-plt.plot(range(25), loss, label="loss", color='lightblue')
-plt.plot(range(25), acc, label="accuracy", color='pink')
-plt.plot(range(25), val_acc, label='validate accuracy', color='lightgreen')
+plt.plot(range(10), loss, label="loss", color='lightblue')
+plt.plot(range(10), acc, label="accuracy", color='pink')
+plt.plot(range(10), val_acc, label='validate accuracy', color='lightgreen')
 plt.legend()
 plt.show()
