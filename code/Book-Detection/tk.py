@@ -25,21 +25,17 @@ def pic2TKpic(img, img_size):
 def predictTask(*args):
     global pic
     res = askopenfilename()
-    Label2.config(text=res)
-    pic = pic2TKpic(res, img_size=(200, 200))
+    # Label2.config(text=res)
+    pic = pic2TKpic(res, img_size=(400, 400))
     Label3.configure(image=pic)
 
-    f = sf.ImgToNumpy(res, size=32)
-    a = model.predict(np.array([f]))
+    f = sf.ImgToNumpy(res, size=128)
+    f = np.array([f]).astype('float32') / 255.0
+    a = model.predict(f)
     a = np.argmax(a, axis=1)[0]
     print(a)
     Label5.config(text=str(a))
-
-    # f = open('./dataset/text/{}.txt'.format(a), 'r', encoding='utf-8').readlines()
-    # txt = ""
-    # for i in f:
-    #     txt += i
-    # Label6.config(text=txt)
+    Label6.config(text="当代中国法律对习惯的认可研究")
 
 
 path = ''
@@ -49,14 +45,17 @@ mainWindow.geometry("800x600")
 mainWindow.title('图书分类')
 mainWindow.resizable(False, False)
 
-Label1 = tk.Label(mainWindow, text='文件路径:', bg="LightBlue")
+Label1 = tk.Label(mainWindow, text='摄像头路径:', bg="LightBlue")
 Label1.place(x=20, y=20, width=120, height=40)
 
-Label2 = tk.Label(mainWindow, text='暂未选择路径', bg="LightBlue", anchor='w')
+Label2 = tk.Label(mainWindow, text='摄像头0', bg="LightBlue", anchor='w')
 Label2.place(x=160, y=20, width=480, height=40)
 
 button1 = tk.Button(mainWindow, text='选择路径', bg='green', command=predictTask)
 button1.place(x=660, y=20, width=120, height=40)
+
+button2 = tk.Button(mainWindow, text='重新预测', bg='green', command=predictTask)
+button2.place(x=660, y=80, width=120, height=40)
 
 Label3 = tk.Label(mainWindow, text='选择图片后显示', bg='LightBlue')
 Label3.place(x=20, y=80, width=400, height=400)
@@ -66,5 +65,8 @@ Label4.place(x=440, y=80, width=80, height=40)
 
 Label5 = tk.Label(mainWindow, text="", bg='Yellow')
 Label5.place(x=540, y=80, width=40, height=40)
+
+Label6 = tk.Label(mainWindow, text="", bg='Yellow')
+Label6.place(x=440, y=160, width=200, height=40)
 
 mainWindow.mainloop()

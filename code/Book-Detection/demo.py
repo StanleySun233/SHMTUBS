@@ -1,10 +1,11 @@
 import tensorflow as tf
 
+import call
 import function as sf
 
-TestBatchSize, TestEpochs = 4, 10
-IMG_WIDTH = 32
-IMG_HEIGHT = 32
+TestBatchSize, TestEpochs = 1, 25
+IMG_WIDTH = 128
+IMG_HEIGHT = 128
 IMG_CHANNELS = 3
 num_class = 10
 
@@ -64,7 +65,10 @@ checkpoint_callback = tf.keras.callbacks.ModelCheckpoint(
     save_best_only=True, save_weights_only=True,
     save_frequency=1)
 
-model.fit(x_train, y_train, batch_size=TestBatchSize, epochs=TestEpochs, verbose=1, callbacks=[checkpoint_callback],
+callback = call.LossHistory("CNN")
+# model.fit(x_train, y_train, batch_size=TestBatchSize, epochs=TestEpochs, verbose=1, callbacks=[checkpoint_callback],
+#           validation_data=(x_test, y_test), shuffle=True)
+model.fit(x_train, y_train, batch_size=TestBatchSize, epochs=TestEpochs, verbose=1, callbacks=[callback],
           validation_data=(x_test, y_test), shuffle=True)
 
 model.save('./model{}.h5'.format(IMG_WIDTH))
